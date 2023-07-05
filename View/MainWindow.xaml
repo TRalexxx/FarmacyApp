@@ -7,6 +7,47 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
+        <!--<StackPanel DataContext="{Binding Users[0]}">
+            <TextBlock Text="{Binding Name}" ></TextBlock>
+        </StackPanel>-->
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <ListBox Grid.Row="0" ItemsSource="{Binding Drugs}" Background="Black" Foreground="White" SelectedItem="{Binding SelectedDrug}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border>
+                            <StackPanel>                                
+                                <TextBlock Text="{Binding Path=Name}" ></TextBlock>                                
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Background="Black">
+                <Button Content="Add" Padding="15" Command="{Binding AddCommand}"></Button>
+                <Button Content="Delete" Padding="15" Command="{Binding DeleteCommand}"></Button>
+                <Button Content="Save" Padding="15" Command="{Binding UpdateCommand}"></Button>
+            </StackPanel>
+        </Grid>
+
+
+
+        <StackPanel Grid.Column="1" Background="Black"  DataContext="{Binding SelectedDrug}">
+            <Image Source="{Binding Path=Photo}" Height="250"/>
+            <TextBox Foreground="Wheat" Background="Black" Text="{Binding Path=Name}" ></TextBox>
+            <TextBox Foreground="WhiteSmoke" Background="Black" Text="{Binding Path=Description}" ></TextBox>
+            <TextBox Foreground="WhiteSmoke" Background="Black" Text="{Binding Path=Photo}" ></TextBox>
+        </StackPanel>
     </Grid>
 </Window>
